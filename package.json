@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "name": "anibot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bot": "nodemon bot",
+    "start": "node bot"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "discord.js-user-account": "^13.3.0",
+    "websocket": "^1.0.34"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
