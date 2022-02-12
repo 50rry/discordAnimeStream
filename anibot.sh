@@ -1,6 +1,5 @@
 #!/bin/sh
 
-auto_play=0
 
 die() {
   err "$*"
@@ -279,7 +278,6 @@ open_episode() {
   # decrypting url
   dpage_link=$(get_dpage_link "$anime_id" "$episode")
   video_url=$(get_video_quality "$dpage_link")
-  # Download or play episodes
 
   killall ffmpeg
 
@@ -289,7 +287,7 @@ open_episode() {
 
   inf "Currently playing $selection_id episode" "$episode/$last_ep_number"
   ffmpeg -stream_loop -1 -re -i "$video_url" -vcodec rawvideo -threads 0 -f v4l2 /dev/video2 > /dev/null 2>&1 &
-  PULSE_SINK=virtual_speaker ffmpeg -i "$video_url" -f pulse "Discord microphone stream" &
+  PULSE_SINK=virtual_speaker ffmpeg -use_wallclock_as_timestamps 1 -i "$video_url" -f pulse "Discord microphone stream" > /dev/null 2>&1 &
 }
 
 ############
